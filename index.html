@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>计数</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+                   "Microsoft YaHei", sans-serif;
+      background: #000;
+      color: #fff;
+    }
+    /* 顶部标题栏（可选，想去掉就把整块 .bar 删掉） */
+    .bar {
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0b0b0b;
+      border-bottom: 1px solid #222;
+      font-size: 15px;
+      letter-spacing: 1px;
+    }
+    .bar a {
+      color: #9ad;
+      text-decoration: none;
+      margin-left: 12px;
+      font-size: 13px;
+    }
+    /* 嵌入容器：占满视口剩余高度，无边框、无滚动条 */
+    #wrap {
+      position: relative;
+      width: 100%;
+      height: calc(100% - 44px);
+    }
+    #wrap.full { height: 100%; }   /* 隐藏标题栏时铺满 */
+    iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+      background: #000;
+    }
+    .noscript {
+      padding: 40px; text-align: center; line-height: 1.8; color: #f99;
+    }
+  </style>
+</head>
+<body>
+  <div class="bar" id="bar">
+    计数
+    <!-- 点此可在新标签页单独打开原页面 -->
+    <a href="./计数.html" target="_blank" rel="noopener">新窗口打开 ↗</a>
+  </div>
+
+  <div id="wrap">
+    <iframe src="./计数.html" title="计数" allowfullscreen></iframe>
+  </div>
+
+  <noscript>
+    <div class="noscript">
+      当前浏览器未启用 JavaScript，无法显示内容。<br>
+      请启用 JavaScript 后访问 <a href="./计数.html" style="color:#9ad">计数.html</a>。
+    </div>
+  </noscript>
+
+  <script>
+    // 可选：URL 带 ?full=1 时隐藏顶部栏，iframe 铺满整屏
+    if (/[?&]full=1/.test(location.search)) {
+      document.getElementById('bar').style.display = 'none';
+      document.getElementById('wrap').classList.add('full');
+    }
+  </script>
+</body>
+</html>
